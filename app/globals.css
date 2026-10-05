@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #fafafc;
+  --foreground: #0b0d14;
+  --surface: #ffffff;
+  --surface-2: #f0f1f6;
+  --muted-foreground: #5a6174;
+  --border: #dadde8;
+  --primary: #e8087e;
+  --primary-foreground: #ffffff;
+  --blue: #0b76e8;
+  --green: #1faf12;
+  --ring: #0b76e8;
+}
+
+.dark {
+  --background: #080a10;
+  --foreground: #f5f6fa;
+  --surface: #10131c;
+  --surface-2: #151925;
+  --muted-foreground: #a7adbb;
+  --border: #262b3a;
+  --primary: #e8087e;
+  --blue: #168bff;
+  --green: #39f52b;
+  --ring: #39f52b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-blue: var(--blue);
+  --color-green: var(--green);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-oxanium), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-oxanium), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 85rem;
+  padding-inline: 1rem;
+  @media (min-width: 40rem) {
+    padding-inline: 1.5rem;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    overflow-x: clip;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
