@@ -1,9 +1,7 @@
-import { iconMap } from "@/components/ui/icon-map";
 import type { Feature } from "@/types/marketplace";
 import Image from "next/image";
 
 export function FeatureItem({ feature }: { feature: Feature }) {
-  const Icon = iconMap[feature.icon];
   return (
     <li className="flex items-center gap-3">
       <span className="grid size-10 shrink-0 place-items-center rounded-lg  text-primary">

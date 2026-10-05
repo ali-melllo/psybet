@@ -1,4 +1,3 @@
-import { Mascot } from "@/components/ui/mascot";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TestimonialCard } from "@/components/ui/testimonial-card";

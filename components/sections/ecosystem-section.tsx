@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FeatureItem } from "@/components/ui/feature-item";
-import { Mascot } from "@/components/ui/mascot";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { features } from "@/lib/data/landing-page";

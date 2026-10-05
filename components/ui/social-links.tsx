@@ -1,10 +1,9 @@
-import { Instagram, MessagesSquare, Twitter, Youtube, type LucideIcon } from "lucide-react";
+import { Youtube } from "lucide-react";
 import { socialLinks } from "@/lib/data/landing-page";
-import type { SocialId } from "@/types/marketplace";
 import { cn } from "@/lib/utils";
-import { SVGProps } from "react";
 
-type IconComponent = LucideIcon | React.ComponentType<SVGProps<SVGSVGElement>>;
+import type { SocialId } from "@/types/marketplace";
+import type { ComponentType, SVGProps } from "react";
 
 const DiscordIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -31,11 +30,11 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
     <path 
     fill="currentColor"
       fillRule="nonzero"
-    d="M12.6 0.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867 -5.07 -4.425 5.07H0.316l5.733 -6.57L0 0.75h5.063l3.495 4.633L12.601 0.75Zm-0.86 13.028h1.36L4.323 2.145H2.865z" strokeWidth="1"></path>
+    d="M12.6 0.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867 -5.07 -4.425 5.07H0.316l5.733 -6.57L0 0.75h5.063l3.495 4.633L12.601 0.75Zm-0.86 13.028h1.36L4.323 2.145H2.865z" strokeWidth="1"/>
   </svg>
 )
 
-export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+export const InstagramIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       viewBox="0 0 32 32"
@@ -75,8 +74,9 @@ export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+type SocialIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
-const icons: Record<SocialId, any> = {
+const icons: Record<SocialId, SocialIcon> = {
   discord: DiscordIcon,
   x: XIcon,
   instagram: InstagramIcon,

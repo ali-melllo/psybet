@@ -1,7 +1,6 @@
 import { Play } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Mascot } from "@/components/ui/mascot";
 import { Reveal } from "@/components/ui/reveal";
 import Image from "next/image";
 

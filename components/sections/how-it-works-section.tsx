@@ -1,10 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { Fragment } from "react";
-import { iconMap } from "@/components/ui/icon-map";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { steps } from "@/lib/data/landing-page";
-import { toneStyles } from "@/lib/tone";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -18,8 +16,6 @@ export function HowItWorksSection() {
         <RevealGroup className="mt-6">
           <ol className="grid gap-6 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-start">
             {steps.map((s, i) => {
-              const Icon = iconMap[s.icon];
-              const tone = toneStyles[s.tone];
               return (
                 <Fragment key={s.id}>
                   <li>

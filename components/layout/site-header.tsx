@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { SocialLinks } from "@/components/ui/social-links";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { navLinks } from "@/lib/data/landing-page";
 import { cn } from "@/lib/utils";
 

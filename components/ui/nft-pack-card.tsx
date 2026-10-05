@@ -1,5 +1,4 @@
 import { BuyPackButton } from "@/components/ui/buy-pack-button";
-import { Mascot } from "@/components/ui/mascot";
 import { toneStyles } from "@/lib/tone";
 import { cn } from "@/lib/utils";
 import type { NftPack } from "@/types/marketplace";
