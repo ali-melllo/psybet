@@ -18,11 +18,10 @@ export function EcosystemSection() {
               height={1000}
               alt={"Psybet"}
               src={"/images/branding/more-than-nfts.png"}
-              className=""
             />
             
           </div>
-          <div className="p-6 md:py-8 md:pl-0 md:pr-10">
+          <div className="flex flex-col p-6 md:py-8 md:pl-0 md:pr-10">
             <SectionHeading
               id="eco-title"
               eyebrow="Why Psybet?"
@@ -34,7 +33,7 @@ export function EcosystemSection() {
                 <FeatureItem key={f.id} feature={f} />
               ))}
             </ul>
-            <Button asChild className="text-base font-semibold mt-5">
+            <Button asChild className="text-base mx-auto md:mr-auto md:ml-0 font-semibold mt-5">
               <Link href="/#roadmap">Explore Ecosystem</Link>
             </Button>
           </div>

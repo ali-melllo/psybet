@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <section id="games" aria-labelledby="hero-title" className="relative bg-primary overflow-hidden pt-8 md:pt-30 md:py-40">
+    <section id="games" aria-labelledby="hero-title" className="relative bg-primary overflow-hidden pt-2 md:pt-30 md:py-40">
       <div className="container-page grid items-center gap-6 md:grid-cols-[1.05fr_1fr]">
         <div className="relative z-10 max-w-md">
           <Reveal>

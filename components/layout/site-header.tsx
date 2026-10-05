@@ -41,7 +41,7 @@ export function SiteHeader() {
         "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1.03)]",
         "will-change-[max-width,padding,top,border-radius,background-color]",
         scrolled
-          ? "bg-background"
+          ? "bg-primary shadow-xl md:bg-background"
           : "bg-primary"
       )}
     >

@@ -9,17 +9,17 @@ export function NftPackCard({ pack }: { pack: NftPack }) {
   return (
     <article
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-2xl bg-surface transition-transform duration-200 hover:-translate-y-1"
+        "group flex h-full flex-col overflow-hidden rounded-2xl bg-surface shadow-xl transition-transform duration-200 hover:-translate-y-1"
       )}
     >
-      <div className="relative grid place-items-center shadow-inner bg-surface-2">
+      <div className="relative grid place-items-center shadow-inner ">
 
         <Image
           width={500}
           height={500}
           alt={"Psybet"}
           src={pack.image}
-          className="size-80 object-cover"
+          className="md:size-80 object-cover"
         />
         <span
           className={cn(
@@ -34,11 +34,11 @@ export function NftPackCard({ pack }: { pack: NftPack }) {
       <div className="flex flex-1 flex-col p-3">
         <h3 className="font-display text-lg font-bold">{pack.name}</h3>
         <p className="mb-3 text-sm text-muted-foreground">{pack.supply.toLocaleString("en-US")} packs</p>
-        <ul className="mb-4 flex gap-1.5" aria-label="Rarity odds">
+        <ul className="mb-4 hidden md:flex gap-1.5" aria-label="Rarity odds">
           {pack.rarities.map((r) => (
             <li
               key={r.tier}
-              className="flex-1 rounded-md border border-border px-1 py-1 text-center text-[10px] leading-tight text-muted-foreground"
+              className="flex-1 rounded-md border border-border px-1 shadow-xl py-1 text-center text-sm leading-tight text-muted-foreground"
             >
               <span className="block font-semibold text-foreground">{r.tier}</span>
               {r.chance}%
@@ -47,7 +47,7 @@ export function NftPackCard({ pack }: { pack: NftPack }) {
         </ul>
         <div className="mt-auto flex items-center justify-">
 
-          <div className="size-10 flex justify-center items-center">
+          <div className="md:size-10 hidden md:flex justify-center items-center">
             <svg
               viewBox="0 0 800 600"
               fill="none"

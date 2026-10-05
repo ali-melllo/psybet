@@ -16,7 +16,7 @@ export function LivePacksGrid({ fallback }: { fallback: NftPack[] }) {
           Live pack data is unavailable. Showing demo packs.
         </p>
       ) : null}
-      <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <RevealGroup className="grid gap-5 grid-cols-2 lg:grid-cols-4">
         {packs.map((p) => (
           <RevealItem key={p.id}>
             <NftPackCard pack={p} />

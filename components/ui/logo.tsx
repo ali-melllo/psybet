@@ -14,6 +14,7 @@ export function Logo({ className }: { className?: string }) {
         height={100}
         alt={"Psybet"}
         src={"/images/icons/logo.png"}
+        className="h-8 w-28 md:w-42 md:h-12"
       />
     </Link>
   );

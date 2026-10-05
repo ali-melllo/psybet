@@ -7,9 +7,9 @@ export function CommunityBannerSection() {
   return (
     <section aria-labelledby="community-title" className="py-4 my-20">
       <Reveal>
-        <div className="relative overflow-hidden bg-blue shadow-2xl text-white">
+        <div className="relative overflow-hidden py-14 bg-blue shadow-2xl text-white">
           <div className="container-page relative flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
-            <div className="absolute flex items-center gap-5 left-0 max-w-64 my-auto">
+            <div className="absolute hidden md:flex items-center gap-5 left-0 max-w-64 my-auto">
               <Logo />
               <span className="text-5xl text-nowrap">---</span>
               <svg
@@ -31,14 +31,14 @@ export function CommunityBannerSection() {
               height={1000}
               alt={"Psybet"}
               src={"/images/branding/join-us.png"}
-              className="w-full translate-x-32 object-cover max-h-96 mx-auto"
+              className="w-full md:translate-x-32 object-cover max-h-96 mx-auto"
             />
             <div className="sm:max-w-xs flex flex-col gap-3 z-30">
               <h2 id="community-title" className="font-display text-5xl font-extrabold">Join Our Community</h2>
               <p className="my-1 font-medium text-white/90">
                 Be the first to know about new drops, updates and exclusive events.
               </p>
-              <Button asChild className="rounded-xl shadow-xl  cursor-pointer">
+              <Button asChild className="rounded-xl shadow-xl py-6! cursor-pointer">
                 <span className="flex items-center">
                   <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
                     Join Discord
