@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { Fragment } from "react";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -15,7 +14,7 @@ export function HowItWorksSection() {
         </Reveal>
         <RevealGroup className="mt-6">
           <ol className="grid gap-6 md:flex md:justify-between">
-            {steps.map((s, i) => {
+            {steps.map((s) => {
               return (
                 <Fragment key={s.id}>
                   <li>

@@ -8,8 +8,8 @@ export function CommunityBannerSection() {
     <section aria-labelledby="community-title" className="py-4 my-20">
       <Reveal>
         <div className="relative py-14 md:py-20 bg-blue shadow-2xl text-white">
-          <div className='absolute w-full h-48 bg-linear-to-b from-background to-transparent top-0 z-20'></div>
-          <div className='absolute w-full h-48 bg-linear-to-t from-background to-transparent bottom-0 z-20'></div>
+          <div className='absolute w-full h-48 bg-linear-to-b from-background to-transparent top-0 z-20'/>
+          <div className='absolute w-full h-48 bg-linear-to-t from-background to-transparent bottom-0 z-20'/>
 
           <div className="container-page relative flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
 
