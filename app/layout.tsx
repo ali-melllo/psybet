@@ -22,6 +22,15 @@ export const metadata: Metadata = {
     url: "/",
   },
   twitter: { card: "summary_large_image", title: siteConfig.title, description: siteConfig.description },
+  icons: {
+    icon: [
+      {
+        url: "/images/mascot.png",
+        type: "image/png",
+      },
+    ],
+    apple: "/images/mascot.png",
+  },
 };
 
 export const viewport: Viewport = {
