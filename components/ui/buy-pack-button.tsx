@@ -13,7 +13,7 @@ export function BuyPackButton({ pack }: { pack: NftPack }) {
     dispatch(noticeShown(result.message));
   };
   return (
-    <Button className="h-8 rounded-xl px-2 md:px-4 ml-auto" aria-label={`Buy ${pack.name}`} onClick={() => void handleClick()}>
+    <Button className="h-8 rounded-lg px-2 md:px-4 ml-auto" aria-label={`Buy ${pack.name}`} onClick={() => void handleClick()}>
       Buy Pack
     </Button>
   );

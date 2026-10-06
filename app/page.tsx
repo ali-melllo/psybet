@@ -5,6 +5,7 @@ import { FeaturedPacksSection } from "@/components/sections/featured-packs-secti
 import { HeroSection } from "@/components/sections/hero-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import PlayDeckSection from "@/components/sections/play-deck";
+import PsyPackSection from "@/components/sections/psy-pack";
 import { RoadmapSection } from "@/components/sections/roadmap-section";
 import { StatsSection } from "@/components/sections/stats-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <CommunityBannerSection />
       <RoadmapSection />
       <TestimonialsSection />
+      <PsyPackSection/>
       <FaqSection />
     </main>
   );

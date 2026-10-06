@@ -14,7 +14,7 @@ export function HowItWorksSection() {
           <SectionHeading id="steps-title" className="flex flex-col gap-2" eyebrow="How it works" title="Get Your Pack in 3 Simple Steps" />
         </Reveal>
         <RevealGroup className="mt-6">
-          <ol className="grid gap-6 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-start">
+          <ol className="grid gap-6 md:flex md:justify-between">
             {steps.map((s, i) => {
               return (
                 <Fragment key={s.id}>
@@ -26,7 +26,7 @@ export function HowItWorksSection() {
                           height={500}
                           alt={"Psybet"}
                           src={s.image}
-                          className="w-full object-cover"
+                          className="w-full object-cover shadow-2xl"
                         />
                         
                       </span>
@@ -36,11 +36,7 @@ export function HowItWorksSection() {
                       </div>
                     </RevealItem>
                   </li>
-                  {i < steps.length - 1 ? (
-                    <li aria-hidden="true" className="hidden self-center text-blue md:block">
-                      <ArrowRight />
-                    </li>
-                  ) : null}
+                 
                 </Fragment>
               );
             })}

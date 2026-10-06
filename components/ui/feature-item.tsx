@@ -4,7 +4,7 @@ import Image from "next/image";
 export function FeatureItem({ feature }: { feature: Feature }) {
   return (
     <li className="flex items-center gap-3">
-      <span className="grid size-10 shrink-0 place-items-center rounded-lg  text-primary">
+      <span className="grid size-14 shrink-0 place-items-center rounded-lg  text-primary">
         <Image
           width={300}
           height={300}

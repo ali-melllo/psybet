@@ -45,13 +45,13 @@ export function SiteHeader() {
           : "bg-primary"
       )}
     >
-      <div className="container-page py-10 flex h-14 items-center gap-8">
+      <div className="container-page py-8 md:py-10 flex h-14 items-center gap-8">
         <Logo />
         <nav aria-label="Primary" className="hidden md:block">
           <ul className="flex items-center gap-7 font-semibold">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="transition-colors hover:text-primary">
+                <Link href={l.href} className={`transition-colors ${ scrolled ? "hover:text-primary" : "hover:text-background"} `}>
                   {l.label}
                 </Link>
               </li>

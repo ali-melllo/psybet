@@ -11,13 +11,14 @@ export function EcosystemSection() {
     <section aria-labelledby="eco-title" className="py-4 my-20">
       <Reveal className="container-page ">
         <div className="relative grid items-center shadow-xl overflow-hidden rounded-3xl border border-border bg-surface md:grid-cols-[1fr_1.1fr]">
-          <div aria-hidden="true" className="relative grid min-h-60 place-items-center p-6">
+          <div aria-hidden="true" className="relative grid min-h-60 place-items-center">
             
             <Image
               width={1000}
               height={1000}
               alt={"Psybet"}
-              src={"/images/branding/more-than-nfts.png"}
+              src={"/images/branding/banner.gif"}
+              className="border-b border-gray-800 pr-10"
             />
             
           </div>

@@ -14,7 +14,7 @@ export function TestimonialsSection() {
             height={1000}
             alt={"Psybet"}
             src={"/images/mascot/mascot.png"}
-            className=""
+            className="animate-bounce"
           />
         </Reveal>
         <div>
