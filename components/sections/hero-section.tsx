@@ -44,7 +44,7 @@ export function HeroSection() {
             height={3000}
             alt={"Psybet"}
             src={"/images/branding/hero.png"}
-            className="size-[20em] m-auto md:-translate-y-10 md:m-0 md:size-fit"
+            className="size-fit m-auto -translate-y-10 md:m-0 md:size-fit"
           />
           {/* <p aria-hidden="true" className="absolute left-2 top-0 hidden -rotate-12 text-center text-2xl font-extrabold leading-none text-green sm:block">
             GOOD<br />LUCK!

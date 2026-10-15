@@ -12,7 +12,7 @@ export function RoadmapItem({ milestone }: { milestone: RoadmapMilestone; isLast
           height={1000}
           alt={"Psybet"}
           src={milestone.image}
-          className="object-cover rounded-4xl size-52"
+          className="object-cover rounded-4xl h-32 md:size-52"
         />
       </span>
       <h3 className="font-display text-sm mt-3 font-bold">{milestone.title}</h3>

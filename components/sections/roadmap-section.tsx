@@ -22,7 +22,7 @@ export function RoadmapSection() {
           </Button>
         </Reveal>
         <RevealGroup>
-          <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="grid md:gap-5 grid-cols-2 lg:grid-cols-4">
             {milestones.map((m, i) => (
               <li key={m.id}>
                 <RevealItem className="h-full">

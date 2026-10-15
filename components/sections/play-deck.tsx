@@ -14,7 +14,7 @@ export default function PlayDeckSection() {
                     height={3000}
                     alt={"Psybet"}
                     src={"/images/branding/psydeck.png"}
-                    className="w-full h-80 md:h-auto object-cover"
+                    className="w-full h-60 md:h-auto object-left object-cover"
                 />
             </Reveal>
         </section>

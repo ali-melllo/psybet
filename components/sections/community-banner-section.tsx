@@ -13,7 +13,7 @@ export function CommunityBannerSection() {
               height={3000}
               alt={"Psybet"}
               src={"/images/branding/psy-pack.png"}
-              className="w-full object-cover"
+              className="w-full h-60 md:h-auto object-cover object-right"
             />       
           </div>
         </div>

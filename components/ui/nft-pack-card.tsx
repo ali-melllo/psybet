@@ -17,7 +17,7 @@ export function NftPackCard({ pack }: { pack: NftPack }) {
           height={1000}
           alt={"Psybet"}
           src={pack.image}
-          className="h-64 md:w-full object-cover rounded-t-lg"
+          className="h-52 md:h-64 md:w-full object-cover rounded-t-lg"
         />
         <span
           className={cn(
@@ -64,7 +64,7 @@ M504.3 273.6C502.6 271.9 500.3 270.9 497.9 270.9H271.4C263.4 270.9 259.3 280.7 2
           </div>
 
 
-          <p className="text-sm -ml-2 font-semibold">{pack.priceSol} SOL</p>
+          <p className="text-sm nd:-ml-2 text-nowrap font-semibold">{pack.priceSol} SOL</p>
           <BuyPackButton pack={pack} />
         </div>
       </div>
