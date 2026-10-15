@@ -13,8 +13,8 @@ export function FeaturedPacksSection() {
           className="gap-2 flex flex-col"
             id="packs-title"
             eyebrow="Featured collections"
-            title="Popular NFT Packs"
-            description="Each pack contains a unique set of NFTs with different rarities. Collect, trade and be part of the community."
+            title="Popular GAME Packs"
+            description="Each pack contains a unique set of Assets with different rarities. Buy with your Favorite Currency from Anywhere."
           />
           <Link href="/#packs" className="text-sm font-semibold text-primary hover:underline">
             View All Packs →

@@ -1,54 +1,41 @@
 import { BuyPackButton } from "@/components/ui/buy-pack-button";
-import { toneStyles } from "@/lib/tone";
 import { cn } from "@/lib/utils";
 import type { NftPack } from "@/types/marketplace";
 import Image from "next/image";
 
 export function NftPackCard({ pack }: { pack: NftPack }) {
-  const tone = toneStyles[pack.tone];
   return (
     <article
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-2xl bg-surface shadow-xl transition-transform duration-200 hover:-translate-y-1"
+        "group flex h-full flex-col overflow-hidden rounded-xl bg-background [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] shadow-xl transition-transform duration-200 hover:-translate-y-1"
       )}
     >
-      <div className="relative grid place-items-center shadow-inner ">
+      <div className="relative flex shadow-inner p-2 ">
 
         <Image
-          width={500}
-          height={500}
+          width={1000}
+          height={1000}
           alt={"Psybet"}
           src={pack.image}
-          className="md:size-80 object-cover"
+          className="h-64 md:w-full object-cover rounded-t-lg"
         />
         <span
           className={cn(
-            "absolute right-2 top-2 rounded-lg px-2 pt-1 text-xs font-bold uppercase",
-            tone.solid,
-            tone.onSolid,
+            "absolute right-2 top-2 px-3 rounded-lg rounded-br-none rounded-tl-none pt-1 text-xs font-bold uppercase bg-primary text-white"
           )}
         >
           {pack.badge}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-3">
+      <div className="flex flex-1 flex-col justify-between p-2 pb-1">
         <h3 className="font-display text-lg font-bold">{pack.name}</h3>
-        <p className="mb-3 text-sm text-muted-foreground">{pack.supply.toLocaleString("en-US")} packs</p>
-        <ul className="mb-4 hidden md:flex gap-1.5" aria-label="Rarity odds">
-          {pack.rarities.map((r) => (
-            <li
-              key={r.tier}
-              className="flex-1 rounded-md border border-border px-1 shadow-xl py-1 text-center text-sm leading-tight text-muted-foreground"
-            >
-              <span className="block font-semibold text-foreground">{r.tier}</span>
-              {r.chance}%
-            </li>
-          ))}
-        </ul>
-        <div className="mt-auto flex items-center justify-">
+        <p className="text-sm text-muted-foreground">{pack.supply.toLocaleString("en-US")} packs</p>
+        
+        <div className="flex items-center justify-between">
 
           <div className="md:size-10 hidden md:flex justify-center items-center">
             <svg
+            className="scale-125 -ml-4"
               viewBox="0 0 800 600"
               fill="none"
             >
@@ -77,7 +64,7 @@ M504.3 273.6C502.6 271.9 500.3 270.9 497.9 270.9H271.4C263.4 270.9 259.3 280.7 2
           </div>
 
 
-          <p className="text-sm font-semibold">{pack.priceSol} SOL</p>
+          <p className="text-sm -ml-2 font-semibold">{pack.priceSol} SOL</p>
           <BuyPackButton pack={pack} />
         </div>
       </div>

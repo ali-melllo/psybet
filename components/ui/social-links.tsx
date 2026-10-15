@@ -98,9 +98,9 @@ export function SocialLinks({ className, only , scrolled }: SocialLinksProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={s.label}
-              className="grid size-9 place-items-center rounded-lg text-muted-foreground transition-colors hover:text-primary"
+              className="grid size-9 place-items-center rounded-lg text-muted-foreground hover:scale-110 transition-all duration-200 hover:text-primary"
             >
-              <Icon className={cn(s.id === "x"? "size-4" :"size-6" , scrolled ? "" : "stroke-black text-black stroke-1!")} aria-hidden="true" />
+              <Icon className={cn(s.id === "x"? "size-4" :"size-6" , scrolled ? "" : "stroke-white text-white stroke-1! dark:stroke-black dark:text-black dark:stroke-1!")} aria-hidden="true" />
             </a>
           </li>
         );

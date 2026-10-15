@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" aria-labelledby="steps-title" className="py-10 my-20">
+    <section id="how-it-works" aria-labelledby="steps-title" className="py-10 my-">
       <div className="container-page">
         <Reveal>
           <SectionHeading id="steps-title" className="flex flex-col gap-2" eyebrow="How it works" title="Get Your Pack in 3 Simple Steps" />
@@ -25,7 +25,7 @@ export function HowItWorksSection() {
                           height={500}
                           alt={"Psybet"}
                           src={s.image}
-                          className="w-full object-cover shadow-2xl"
+                          className="w-full object-cover shadow-2xl rounded-full"
                         />
                         
                       </span>

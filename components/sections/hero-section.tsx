@@ -6,18 +6,18 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <section id="games" aria-labelledby="hero-title" className="relative bg-primary overflow-hidden pt-2 md:pt-30 md:py-40">
+    <section id="games" aria-labelledby="hero-title" className="relative bg-primary overflow-hidden pt-2 md:pt-10 md:py-40">
       <div className="container-page grid items-center gap-6 md:grid-cols-[1.05fr_1fr]">
         <div className="relative z-10 max-w-md">
           <Reveal>
-            <p className="mb-4 inline-flex pt-1.5 items-center gap-2 rounded-full border text-black border-background px-3 py-1 text-xs font-semibold uppercase tracking-wide">
-              <span className="size-2 rounded-sm bg-background shadow-2xl animate-pulse" aria-hidden="true" />
-              The next big NFT collection
+            <p className="mb-4 inline-flex pt-1.5 items-center gap-2 rounded-full border border-black text-black px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+              <span className="size-2 rounded-sm bg-black shadow-2xl animate-pulse" aria-hidden="true" />
+              Your Digital Lifestyle in one place
             </p>
           </Reveal>
           <Reveal delay={0.08}>
             <h1 id="hero-title" className="font-display text-4xl font-extrabold text-white leading-[1.05] sm:text-5xl">
-              Let’s make it happen, Try your <span className="text-">luck…</span>
+              Buy & Sell Verified Accounts and Gift Cards 
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
@@ -40,11 +40,11 @@ export function HeroSection() {
         <Reveal delay={0.2} className="relative flex justify-end h-72 md:h-88">
           
           <Image
-            width={1000}
-            height={1000}
+            width={3000}
+            height={3000}
             alt={"Psybet"}
-            src={"/images/mascot/mascot.png"}
-            className="size-[20em] m-auto md:m-0 md:size-[22em]"
+            src={"/images/branding/hero.png"}
+            className="size-[20em] m-auto md:-translate-y-10 md:m-0 md:size-fit"
           />
           {/* <p aria-hidden="true" className="absolute left-2 top-0 hidden -rotate-12 text-center text-2xl font-extrabold leading-none text-green sm:block">
             GOOD<br />LUCK!

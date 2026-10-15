@@ -14,7 +14,7 @@ export function RoadmapSection() {
             className="flex flex-col gap-3"
             id="roadmap-title"
             eyebrow="Our journey"
-            title="The Roadmap"
+            title="The Best Sellers "
             description="From our first pack to a full ecosystem. Here’s what’s next."
           />
           <Button asChild className="mt-4">
