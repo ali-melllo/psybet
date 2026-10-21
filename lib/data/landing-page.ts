@@ -28,46 +28,46 @@ export const demoStats: MarketplaceStat[] = [
 export const demoPacks: NftPack[] = [
   {
     id: "legends", name: "Psybet Legends Pack", badge: "Legendary", supply: 10000, priceSol: 2.5, tone: "pink",
-    rarities: [{ tier: "Legendary", chance: 2 }, { tier: "Epic", chance: 8 }, { tier: "Rare", chance: 20 }, { tier: "Common", chance: 70 }], image: "/images/nft-packs/battlefield.webp"
+    rarities: [{ tier: "Legendary", chance: 2 }, { tier: "Epic", chance: 8 }, { tier: "Rare", chance: 20 }, { tier: "Common", chance: 70 }], image: "/images/packs/battlefield.webp"
   },
   {
     id: "chaos", name: "Chaos Pack", badge: "Epic", supply: 5000, priceSol: 1.2, tone: "blue",
-    rarities: [{ tier: "Epic", chance: 5 }, { tier: "Rare", chance: 15 }, { tier: "Common", chance: 80 }], image: "/images/nft-packs/cod.png"
+    rarities: [{ tier: "Epic", chance: 5 }, { tier: "Rare", chance: 15 }, { tier: "Common", chance: 80 }], image: "/images/packs/cod.png"
   },
   {
     id: "lucky", name: "Lucky Pack", badge: "Rare", supply: 2500, priceSol: 0.6, tone: "green",
-    rarities: [{ tier: "Rare", chance: 10 }, { tier: "Uncommon", chance: 25 }, { tier: "Common", chance: 65 }], image: "/images/nft-packs/csgo.jpg"
+    rarities: [{ tier: "Rare", chance: 10 }, { tier: "Uncommon", chance: 25 }, { tier: "Common", chance: 65 }], image: "/images/packs/csgo.jpg"
   },
   {
     id: "starter", name: "Starter Pack", badge: "Common", supply: 1000, priceSol: 0.2, tone: "neutral",
-    rarities: [{ tier: "Uncommon", chance: 30 }, { tier: "Common", chance: 70 }], image: "/images/nft-packs/gta-vi.jpg"
+    rarities: [{ tier: "Uncommon", chance: 30 }, { tier: "Common", chance: 70 }], image: "/images/packs/gta-vi.jpg"
   },
   {
     id: "test-2", name: "Starter Pack", badge: "Common", supply: 1000, priceSol: 0.2, tone: "neutral",
-    rarities: [{ tier: "Uncommon", chance: 30 }, { tier: "Common", chance: 70 }], image: "/images/nft-packs/clash-royal.jpg"
+    rarities: [{ tier: "Uncommon", chance: 30 }, { tier: "Common", chance: 70 }], image: "/images/packs/clash-royal.jpg"
   },
 ];
 
 export const demoAccPacks: NftPack[] = [
   {
     id: "legends", name: "Psybet Legends Pack", badge: "Legendary", supply: 10000, priceSol: 2.5, tone: "pink",
-    rarities: [{ tier: "Legendary", chance: 2 }, { tier: "Epic", chance: 8 }, { tier: "Rare", chance: 20 }, { tier: "Common", chance: 70 }], image: "/images/nft-packs/apple-music.jpeg"
+    rarities: [{ tier: "Legendary", chance: 2 }, { tier: "Epic", chance: 8 }, { tier: "Rare", chance: 20 }, { tier: "Common", chance: 70 }], image: "/images/packs/apple-music.jpeg"
   },
   {
     id: "chaos", name: "Chaos Pack", badge: "Epic", supply: 5000, priceSol: 1.2, tone: "blue",
-    rarities: [{ tier: "Epic", chance: 5 }, { tier: "Rare", chance: 15 }, { tier: "Common", chance: 80 }], image: "/images/nft-packs/spotify.jpg"
+    rarities: [{ tier: "Epic", chance: 5 }, { tier: "Rare", chance: 15 }, { tier: "Common", chance: 80 }], image: "/images/packs/spotify.jpg"
   },
   {
     id: "lucky", name: "Lucky Pack", badge: "Rare", supply: 2500, priceSol: 0.6, tone: "green",
-    rarities: [{ tier: "Rare", chance: 10 }, { tier: "Uncommon", chance: 25 }, { tier: "Common", chance: 65 }], image: "/images/nft-packs/playstation.webp"
+    rarities: [{ tier: "Rare", chance: 10 }, { tier: "Uncommon", chance: 25 }, { tier: "Common", chance: 65 }], image: "/images/packs/playstation.webp"
   },
   {
     id: "starter", name: "Starter Pack", badge: "Common", supply: 1000, priceSol: 0.2, tone: "neutral",
-    rarities: [{ tier: "Uncommon", chance: 30 }, { tier: "Common", chance: 70 }], image: "/images/nft-packs/netflix.webp"
+    rarities: [{ tier: "Uncommon", chance: 30 }, { tier: "Common", chance: 70 }], image: "/images/packs/netflix.webp"
   },
   {
     id: "test-2", name: "Starter Pack", badge: "Common", supply: 1000, priceSol: 0.2, tone: "neutral",
-    rarities: [{ tier: "Uncommon", chance: 30 }, { tier: "Common", chance: 70 }], image: "/images/nft-packs/youtube.png"
+    rarities: [{ tier: "Uncommon", chance: 30 }, { tier: "Common", chance: 70 }], image: "/images/packs/youtube.png"
   },
 ];
 
@@ -85,10 +85,10 @@ export const steps: ProcessStep[] = [
 ];
 
 export const milestones: RoadmapMilestone[] = [
-  { id: "beginning", title: "The Beginning", description: "NFT collection and community launch.", status: "completed", icon: "sparkles", tone: "pink", image: "/images/nft-packs/gta-vi.jpg" },
-  { id: "universe", title: "Expand the Universe", description: "New packs, more utilities and bigger rewards.", status: "in-progress", icon: "discord", tone: "blue", image: "/images/nft-packs/dota2.jpg" },
-  { id: "game", title: "The Big Game", description: "Full ecosystem, games, rewards and more.", status: "upcoming", icon: "gamepad", tone: "green", image: "/images/nft-packs/cod.jpg" },
-  { id: "next", title: "Next Level", description: "More surprises, coming soon.", status: "upcoming", icon: "rocket", tone: "neutral", image: "/images/nft-packs/mobile-legends.jpg" },
+  { id: "beginning", title: "The Beginning", description: "NFT collection and community launch.", status: "completed", icon: "sparkles", tone: "pink", image: "/images/packs/gta-vi.jpg" },
+  { id: "universe", title: "Expand the Universe", description: "New packs, more utilities and bigger rewards.", status: "in-progress", icon: "discord", tone: "blue", image: "/images/packs/dota2.jpg" },
+  { id: "game", title: "The Big Game", description: "Full ecosystem, games, rewards and more.", status: "upcoming", icon: "gamepad", tone: "green", image: "/images/packs/cod.jpg" },
+  { id: "next", title: "Next Level", description: "More surprises, coming soon.", status: "upcoming", icon: "rocket", tone: "neutral", image: "/images/packs/mobile-legends.jpg" },
 ];
 
 /** Fictional demonstration testimonials – replace with verified ones before launch. */

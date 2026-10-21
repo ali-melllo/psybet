@@ -17,7 +17,7 @@ export function EcosystemSection() {
               width={1000}
               height={1000}
               alt={"Psybet"}
-              src={"/images/nft-packs/clash-royal.jpg"}
+              src={"/images/packs/clash-royal.jpg"}
               className="border-b h-full object-cover rounded-xl shadow-2xl border-gray-800 "
             />
             
