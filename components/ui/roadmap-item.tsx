@@ -15,7 +15,7 @@ export function RoadmapItem({ milestone }: { milestone: RoadmapMilestone; isLast
           className="object-cover rounded-4xl h-32 md:size-52"
         />
       </span>
-      <h3 className="font-display text-sm mt-3 font-bold">{milestone.title}</h3>
+      <h3 className="font-display text-sm mt-2 font-bold">{milestone.title}</h3>
       <p className="mb-3 mt-1 text-xs text-muted-foreground">{milestone.description}</p>
       
     

@@ -8,8 +8,6 @@ export function CommunityBannerSection() {
     <section aria-labelledby="community-title" className="py-4 bg-blue my-10">
       <Reveal className=" flex flex-col md:flex-row container-page" delay={0.25}>
                 
-
-
                 <div className='w-full md:w-6/12 flex flex-col justify-center '>
                     <div className="relative z-10 max-w-md">
                         <Reveal delay={0.08}>
@@ -35,8 +33,8 @@ export function CommunityBannerSection() {
                         width={3000}
                         height={3000}
                         alt={"Psybet"}
-                        src={"/images/branding/banner-2.png"}
-                        className="w-full h-70 md:h-110 md:-mr-20"
+                        src={"/images/branding/banner-2.webp"}
+                        className="w-full h-70 md:h-110 object-cover md:-mr-24"
                     />
                 </div>
                 

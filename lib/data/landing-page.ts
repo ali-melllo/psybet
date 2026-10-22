@@ -79,15 +79,15 @@ export const features: Feature[] = [
 ];
 
 export const steps: ProcessStep[] = [
-  { id: "wallet", title: "Connect Wallet", description: "Link your wallet in seconds. It’s safe and easy.", icon: "wallet", tone: "pink", image: "/images/branding/road-map-1.png" },
-  { id: "choose", title: "Choose a Pack", description: "Pick your favorite pack and make it yours.", icon: "package", tone: "blue", image: "/images/branding/road-map-2.png" },
-  { id: "reveal", title: "Reveal Your Collectible", description: "Open your pack and discover your unique NFT.", icon: "sparkles", tone: "green", image: "/images/branding/road-map-3.png" },
+  { id: "wallet", title: "Connect Wallet", description: "Link your wallet in seconds. It’s safe and easy. choose your favorite network or wallet", icon: "wallet", tone: "pink", image: "/images/branding/connect-wallet.png" },
+  { id: "choose", title: "Choose a Pack", description: "Pick your favorite pack and make it yours with any prefer crypto currency", icon: "package", tone: "blue", image: "/images/branding/road-map-3.png" },
+  { id: "reveal", title: "Reveal Your Collectible", description: "Open your pack and enjoy your account or gift it to a favorite person", icon: "sparkles", tone: "green", image: "/images/branding/road-map-1.png" },
 ];
 
 export const milestones: RoadmapMilestone[] = [
   { id: "beginning", title: "The Beginning", description: "NFT collection and community launch.", status: "completed", icon: "sparkles", tone: "pink", image: "/images/packs/gta-vi.jpg" },
   { id: "universe", title: "Expand the Universe", description: "New packs, more utilities and bigger rewards.", status: "in-progress", icon: "discord", tone: "blue", image: "/images/packs/dota2.jpg" },
-  { id: "game", title: "The Big Game", description: "Full ecosystem, games, rewards and more.", status: "upcoming", icon: "gamepad", tone: "green", image: "/images/packs/cod.jpg" },
+  { id: "game", title: "The Big Game", description: "Full ecosystem, games, rewards and more.", status: "upcoming", icon: "gamepad", tone: "green", image: "/images/packs/cod.png" },
   { id: "next", title: "Next Level", description: "More surprises, coming soon.", status: "upcoming", icon: "rocket", tone: "neutral", image: "/images/packs/mobile-legends.jpg" },
 ];
 

@@ -22,7 +22,7 @@ export default function HomePage() {
       <HowItWorksSection />
       <CommunityBannerSection />
       <RoadmapSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <FaqSection />
     </main>
   );

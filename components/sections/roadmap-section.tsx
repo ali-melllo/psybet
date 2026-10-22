@@ -8,21 +8,21 @@ import { milestones } from "@/lib/data/landing-page";
 export function RoadmapSection() {
   return (
     <section id="roadmap" aria-labelledby="roadmap-title" className="py-10">
-      <div className="container-page grid items-center  gap-6 lg:grid-cols-[14rem_1fr]">
+      <div className="container-page grid items-center gap-10 lg:grid-cols-[14rem_1fr]">
         <Reveal>
           <SectionHeading
             className="flex flex-col gap-3"
             id="roadmap-title"
             eyebrow="Our journey"
-            title="The Best Sellers "
-            description="From our first pack to a full ecosystem. Here’s what’s next."
+            title="Best Sellers "
+            description="From our first pack to a full ecosystem. Best Assets on The market which had the most sales"
           />
           <Button asChild className="mt-4">
-            <Link href="/#roadmap">View Full Roadmap</Link>
+            <Link href="/#roadmap">View All Products</Link>
           </Button>
         </Reveal>
         <RevealGroup>
-          <ol className="grid md:gap-5 grid-cols-2 lg:grid-cols-4">
+          <ol className="grid md:gap-3 grid-cols-2 lg:grid-cols-4">
             {milestones.map((m, i) => (
               <li key={m.id}>
                 <RevealItem className="h-full">
