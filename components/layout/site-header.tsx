@@ -38,7 +38,7 @@ export function SiteHeader() {
       transition={{ duration: 0.4 }}
       className={cn(
         "sticky top-0 z-50 w-full",
-        "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1.03)]",
+        "transition-all duration- ease-[cubic-bezier(0.16,1,0.3,1.03)]",
         "will-change-[max-width,padding,top,border-radius,background-color]",
         scrolled
           ? "bg-primary shadow-xl md:bg-background"

@@ -11,10 +11,10 @@ export const navLinks: NavLink[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { id: "discord", label: "Psybet on Discord", href: "https://discord.com" },
-  { id: "x", label: "Psybet on X", href: "https://x.com" },
-  { id: "instagram", label: "Psybet on Instagram", href: "https://instagram.com" },
-  { id: "youtube", label: "Psybet on YouTube", href: "https://youtube.com" },
+  { id: "discord", label: "adesanya on Discord", href: "https://discord.com" },
+  { id: "x", label: "adesanya on X", href: "https://x.com" },
+  { id: "instagram", label: "adesanya on Instagram", href: "https://instagram.com" },
+  { id: "youtube", label: "adesanya on YouTube", href: "https://youtube.com" },
 ];
 
 /** Demo data – not live blockchain information. */
@@ -27,7 +27,7 @@ export const demoStats: MarketplaceStat[] = [
 
 export const demoPacks: NftPack[] = [
   {
-    id: "legends", name: "Psybet Legends Pack", badge: "Legendary", supply: 10000, priceSol: 2.5, tone: "pink",
+    id: "legends", name: "adesanya Legends Pack", badge: "Legendary", supply: 10000, priceSol: 2.5, tone: "pink",
     rarities: [{ tier: "Legendary", chance: 2 }, { tier: "Epic", chance: 8 }, { tier: "Rare", chance: 20 }, { tier: "Common", chance: 70 }], image: "/images/packs/battlefield.webp"
   },
   {
@@ -50,7 +50,7 @@ export const demoPacks: NftPack[] = [
 
 export const demoAccPacks: NftPack[] = [
   {
-    id: "legends", name: "Psybet Legends Pack", badge: "Legendary", supply: 10000, priceSol: 2.5, tone: "pink",
+    id: "legends", name: "adesanya Legends Pack", badge: "Legendary", supply: 10000, priceSol: 2.5, tone: "pink",
     rarities: [{ tier: "Legendary", chance: 2 }, { tier: "Epic", chance: 8 }, { tier: "Rare", chance: 20 }, { tier: "Common", chance: 70 }], image: "/images/packs/apple-music.jpeg"
   },
   {
@@ -99,7 +99,7 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const faqs: FaqItem[] = [
-  { id: "what", question: "What is Psybet?", answer: "Psybet is a community-driven NFT collection and game universe. This page shows demo information only." },
+  { id: "what", question: "What is adesanya?", answer: "adesanya is a community-driven NFT collection and game universe. This page shows demo information only." },
   { id: "buy", question: "How do I buy a pack?", answer: "Connect a compatible wallet, choose a pack and confirm. Purchasing is not live in this demo." },
   { id: "wallet", question: "What wallet can I use?", answer: "Solana-compatible wallets will be supported at launch." },
   { id: "rarities", question: "What are the rarities?", answer: "Packs can contain Legendary, Epic, Rare, Uncommon and Common collectibles." },

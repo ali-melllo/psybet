@@ -8,7 +8,6 @@ import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import PlayDeckSection from "@/components/sections/play-deck";
 import { RoadmapSection } from "@/components/sections/roadmap-section";
 import { StatsSection } from "@/components/sections/stats-section";
-import { TestimonialsSection } from "@/components/sections/testimonials-section";
 
 export default function HomePage() {
   return (

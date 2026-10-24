@@ -23,7 +23,7 @@ export function HowItWorksSection() {
                         <Image
                           width={500}
                           height={500}
-                          alt={"Psybet"}
+                          alt={"adesanya"}
                           src={s.image}
                           className="w-full object-cover shadow-2xl rounded-full"
                         />

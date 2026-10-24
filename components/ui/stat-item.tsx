@@ -10,7 +10,7 @@ export function StatItem({ stat }: { stat: MarketplaceStat }) {
         <Image
           width={200}
           height={100}
-          alt={"Psybet"}
+          alt={"adesanya"}
           src={stat.image}
         />
       </span>

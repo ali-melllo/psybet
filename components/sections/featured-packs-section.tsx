@@ -10,7 +10,7 @@ export function FeaturedPacksSection() {
       <div className="container-page">
         <Reveal className="mb-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
           <SectionHeading
-          className="gap-2 flex flex-col"
+            className="gap-2 flex flex-col"
             id="packs-title"
             eyebrow="Featured collections"
             title="Popular GAME Packs"
@@ -20,7 +20,10 @@ export function FeaturedPacksSection() {
             View All Packs →
           </Link>
         </Reveal>
-        <LivePacksGrid fallback={demoPacks} />
+        <div className="flex flex-col gap-5">
+          <LivePacksGrid fallback={demoPacks} />
+          <LivePacksGrid fallback={demoPacks} />
+        </div>
       </div>
     </section>
   );

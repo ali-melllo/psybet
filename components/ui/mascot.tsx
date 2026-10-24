@@ -7,7 +7,7 @@ interface MascotProps {
 }
 
 /**
- * Vector stand-in for the PSYBET mascot. Swap for the real artwork by rendering
+ * Vector stand-in for the adesanya mascot. Swap for the real artwork by rendering
  * <Image src="/images/mascot/..." /> here; every section imports this component.
  */
 export function Mascot({ className, title }: MascotProps) {

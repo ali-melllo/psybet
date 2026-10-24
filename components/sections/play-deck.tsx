@@ -15,7 +15,7 @@ export default function PlayDeckSection() {
                     <Image
                         width={3000}
                         height={3000}
-                        alt={"Psybet"}
+                        alt={"adesanya"}
                         src={"/images/branding/banner.png"}
                         className="w-full h-60 md:h-110 md:-ml-20"
                     />

@@ -1,4 +1,4 @@
-# PSYBET – NFT marketplace landing page
+# adesanya – NFT marketplace landing page
 
 Next.js 15 (App Router) · React 19 · TypeScript (strict) · Tailwind CSS v4 · shadcn/ui (Radix) ·
 Framer Motion (LazyMotion) · Redux Toolkit + RTK Query · next-themes · Oxanium via `next/font`.

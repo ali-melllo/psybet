@@ -23,7 +23,7 @@ export function SiteFooter() {
           </ul>
         </nav>
         <SocialLinks scrolled only={["discord", "x", "instagram"]} className="md:ml-auto" />
-        <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Psybet. All rights reserved.</p>
+        <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} adesanya. All rights reserved.</p>
       </Reveal>
     </footer>
   );

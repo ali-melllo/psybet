@@ -12,7 +12,7 @@ export function TestimonialsSection() {
         <Image
             width={1000}
             height={1000}
-            alt={"Psybet"}
+            alt={"adesanya"}
             src={"/images/mascot/mascot.png"}
             className="animate-bounce"
           />

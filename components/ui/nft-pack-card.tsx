@@ -15,7 +15,7 @@ export function NftPackCard({ pack }: { pack: NftPack }) {
         <Image
           width={1000}
           height={1000}
-          alt={"Psybet"}
+          alt={"adesanya"}
           src={pack.image}
           className="h-52 md:h-64 md:w-full object-cover rounded-t-lg"
         />

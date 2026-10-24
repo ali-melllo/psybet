@@ -8,7 +8,7 @@ export function FeatureItem({ feature }: { feature: Feature }) {
         <Image
           width={300}
           height={300}
-          alt={"Psybet"}
+          alt={"adesanya"}
           src={feature.image}
           className=""
         />

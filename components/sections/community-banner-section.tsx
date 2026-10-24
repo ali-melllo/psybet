@@ -32,7 +32,7 @@ export function CommunityBannerSection() {
                     <Image
                         width={3000}
                         height={3000}
-                        alt={"Psybet"}
+                        alt={"adesanya"}
                         src={"/images/branding/banner-2.webp"}
                         className="w-full h-70 md:h-110 object-cover md:-mr-24"
                     />

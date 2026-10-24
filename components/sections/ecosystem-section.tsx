@@ -16,7 +16,7 @@ export function EcosystemSection() {
             <Image
               width={1000}
               height={1000}
-              alt={"Psybet"}
+              alt={"adesanya"}
               src={"/images/packs/clash-royal.jpg"}
               className="border-b h-full object-cover rounded-xl shadow-2xl border-gray-800 "
             />
@@ -25,7 +25,7 @@ export function EcosystemSection() {
           <div className="flex flex-col p-6 md:py-8 md:pl-0 md:pr-10">
             <SectionHeading
               id="eco-title"
-              eyebrow="Why Psybet?"
+              eyebrow="Why adesanya?"
               title="More Than Just Gift Cards"
               description="We’re building a whole ecosystem around exclusive packs, community, and real utility. Be part of something bigger than just a collection."
             />

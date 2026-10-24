@@ -10,7 +10,7 @@ export function RoadmapItem({ milestone }: { milestone: RoadmapMilestone; isLast
         <Image
           width={1000}
           height={1000}
-          alt={"Psybet"}
+          alt={"adesanya"}
           src={milestone.image}
           className="object-cover rounded-4xl h-32 md:size-52"
         />
