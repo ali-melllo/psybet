@@ -9,6 +9,7 @@ import { Logo } from "@/components/ui/logo";
 import { SocialLinks } from "@/components/ui/social-links";
 import { navLinks } from "@/lib/data/landing-page";
 import { cn } from "@/lib/utils";
+import { WalletButton } from "../wallet/wallet-button";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -61,9 +62,9 @@ export function SiteHeader() {
         <div className="ml-auto flex items-center gap-1">
           <SocialLinks scrolled={scrolled} className="hidden lg:flex" only={["discord", "x", "instagram"]} />
           {/* <ThemeToggle /> */}
-          <Button asChild className="ml-2 font-bold hidden px-10 sm:inline-flex bg-linear-to-br from-pink-700 to-red-800 hover:scale-105 transition-all duration-200 shadow-xl ">
+          <Button asChild className="ml-2 cursor-pointer font-bold hidden px-7 sm:inline-flex bg-linear-to-br from-pink-700 to-red-800 hover:scale-105 transition-all duration-200 shadow-xl ">
             {/* Integration point: point at the real dapp URL when available. */}
-            <Link href="/#packs">Connect Wallet</Link>
+            <WalletButton />
           </Button>
           <Button
             variant="ghost"
