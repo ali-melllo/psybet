@@ -73,8 +73,6 @@ export const CATEGORY_DEFAULTS: Record<CategoryId, CategoryDefaults> = {
   },
 };
 
-const IMG = "/images/packs/spotify.webp"; // placeholder – replace per product
-
 /** Demo data only – swap for your API / DB. */
 export const DEMO_PRODUCTS: Product[] = [
   { id: "p1", name: "PS5 Account – 20 Games", description: "Primary PS5 account with a curated library of 20 titles.", category: "gaming-accounts", price: 39.9, originalPrice: 59.9, image: "/images/packs/ps5.png", rating: 4.8, reviews: 312, inStock: true, delivery: "1h", badge: "Best seller" },

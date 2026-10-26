@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Mascot } from "@/components/ui/mascot";
 
 export default function NotFound() {
   return (
