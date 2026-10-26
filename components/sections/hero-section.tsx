@@ -39,7 +39,7 @@ export function HeroSection() {
         </div>
         <Reveal delay={0.2} className="relative flex justify-end h-72 md:h-88">
 
-          <div className="grid grid-cols-4 mx-auto md:gap-3">
+          <div className="grid grid-cols-4 md:min-w-138 md:max-w-140 mx-auto md:gap-3">
           <div
               className="relative size-20 md:size-32 md:-translate-y-10 translate-x-3 md:translate-x-6 z-20 cursor-pointer hover:scale-105 "
             >
