@@ -61,7 +61,7 @@ const SORT_OPTIONS: { id: SortId; label: string }[] = [
   { id: "rating", label: "Top rated" },
 ];
 
-const PAGE_SIZE = 9;
+const PAGE_SIZE = 12;
 
 /** Demo data only – swap for your API / DB results. */
 const DEMO_PRODUCTS: Product[] = [
@@ -73,7 +73,7 @@ const DEMO_PRODUCTS: Product[] = [
   { id: "p6", name: "Claude Pro – 1 Month", description: "Subscription activation for a month of higher limits.", category: "ai", price: 19.5, image: "/images/packs/gta-vi.jpg", rating: 4.7, reviews: 133, inStock: true, delivery: "1h" },
   { id: "p7", name: "Midjourney Standard – 1 Month", description: "Image generation plan with fast GPU hours.", category: "ai", price: 24, image: "/images/packs/cod.png", rating: 4.3, reviews: 76, inStock: false, delivery: "1h" },
   { id: "p8", name: "Netflix Premium – 6 Months", description: "4K plan on a private profile, 6-month warranty.", category: "streaming", price: 44.9, originalPrice: 71.94, image: "/images/packs/csgo.jpg", rating: 4.4, reviews: 520, inStock: true, delivery: "instant" },
-  { id: "p9", name: "Disney+ Annual", description: "Twelve months of Disney, Pixar, Marvel and Star Wars.", category: "streaming", price: 59, image: "/images/packs/spotify.webp", rating: 4.5, reviews: 98, inStock: true, delivery: "1h" },
+  { id: "p9", name: "Disney+ Annual", description: "Twelve months of Disney, Pixar, Marvel and Star Wars.", category: "streaming", price: 59, image: "/images/packs/spotify.jpg", rating: 4.5, reviews: 98, inStock: true, delivery: "1h" },
   { id: "p10", name: "Spotify Premium – 12 Months", description: "Ad-free music, offline listening, unlimited skips.", category: "music", price: 54.9, originalPrice: 119.88, image: "/images/packs/figma.webp", rating: 4.8, reviews: 1204, inStock: true, delivery: "instant", badge: "Best value" },
   { id: "p11", name: "Apple Music – 3 Months", description: "Lossless audio and spatial sound on all your devices.", category: "music", price: 12.9, image: "/images/packs/v-bucks.png", rating: 4.4, reviews: 61, inStock: true, delivery: "instant" },
   { id: "p12", name: "PlayStation Store Card $25", description: "US-region PSN credit delivered as a code.", category: "gift-cards", price: 24.5, image: "/images/packs/mobile-legends.jpg", rating: 4.9, reviews: 689, inStock: true, delivery: "instant" },
@@ -113,7 +113,7 @@ function ProductCard({ product, onBuy }: { product: Product; onBuy: (p: Product)
             sizes="(min-width:1280px) 22vw, (min-width:640px) 33vw, 100vw"
             className="h-48 w-full rounded-t-lg object-cover md:h-56"
           />
-          <span className="absolute right-2 top-2 rounded-lg rounded-br-none rounded-tl-none bg-primary px-3 pt-1 text-xs font-bold uppercase text-white">
+          <span className="absolute right-2 top-2 rounded-lg rounded-br-none rounded-tl-none bg-primary px-3 pt-1 text-[10px] md:text-xs font-bold uppercase text-white">
             {product.badge ?? category.label}
           </span>
           {discount > 0 ? (
@@ -127,10 +127,10 @@ function ProductCard({ product, onBuy }: { product: Product; onBuy: (p: Product)
           <p className="flex items-center gap-1 text-xs text-muted-foreground">
             <category.Icon className="size-3.5" aria-hidden="true" /> {category.label}
           </p>
-          <h3 className="font-display text-lg font-bold leading-tight">{product.name}</h3>
-          <p className="line-clamp-2 text-sm text-muted-foreground">{product.description}</p>
+          <h3 className="font-display md:text-lg font-bold leading-tight">{product.name}</h3>
+          <p className="line-clamp-2 text-xs md:text-sm text-muted-foreground">{product.description}</p>
 
-          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 text-[10px] text-nowrap md:text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <Star className="size-3.5 fill-green text-green" aria-hidden="true" />
               <span className="sr-only">Rated </span>
@@ -143,10 +143,10 @@ function ProductCard({ product, onBuy }: { product: Product; onBuy: (p: Product)
           </div>
 
           <div className="mt-auto flex items-center justify-between gap-2 pt-2">
-            <p className="font-semibold">
+            <p className="font-semibold flex flex-col md:flex-row">
               {formatPrice(product.price)}
               {product.originalPrice ? (
-                <span className="ml-2 text-xs font-normal text-muted-foreground line-through">
+                <span className="md:ml-2 text-xs font-normal text-muted-foreground line-through">
                   {formatPrice(product.originalPrice)}
                 </span>
               ) : null}
@@ -412,13 +412,13 @@ function ShopCatalog({ products }: { products: Product[] }) {
           {results.length === 0 ? (
             <div className="grid place-items-center gap-3 rounded-xl border border-dashed border-border px-6 py-16 text-center">
               <PackageOpen className="size-10 text-muted-foreground" aria-hidden="true" />
-              <h2 className="font-display text-xl font-bold">No products match</h2>
+              <h2 className="font-display md:text-xl font-bold">No products match</h2>
               <p className="text-sm text-muted-foreground">Try a different search or loosen your filters.</p>
               <Button variant="outline" onClick={clearAll}>Clear filters</Button>
             </div>
           ) : (
             <>
-              <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <ul className="grid gap-4 grid-cols-2 xl:grid-cols-4">
                 {results.slice(0, limit).map((p) => (
                   <ProductCard key={p.id} product={p} onBuy={handleBuy} />
                 ))}

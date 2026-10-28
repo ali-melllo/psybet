@@ -8,6 +8,7 @@ import { useWallet } from "@/components/wallet/wallet-context";
 import { shortAddress } from "@/lib/format";
 import { chainName } from "@/lib/wallet/chains";
 import { metaMaskDeepLink } from "@/lib/wallet/detect";
+import MetaMaskIcon from "../icons/meta-mask";
 
 export function WalletModal() {
   const w = useWallet();
@@ -116,10 +117,10 @@ export function WalletModal() {
               type="button"
               onClick={() => void w.connect()}
               disabled={w.status === "connecting"}
-              className="flex w-full items-center gap-3 rounded-lg border border-border bg-surface p-3 text-left transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
+              className="flex w-full items-center gap-3 rounded-lg border border-border bg-surface p-3 text-left transition-colors cursor-pointer hover:bg-surface/30 hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
             >
-              <span className="grid size-10 place-items-center rounded-lg bg-primary/15 text-primary">
-                <Wallet className="size-5" aria-hidden="true" />
+              <span className="flex justify-center items-center size-10 place-items-center rounded-lg  text-primary">
+                <MetaMaskIcon size={48} title="MetaMask" className="metamask-icon" />
               </span>
               <span className="flex-1">
                 <span className="block text-sm font-semibold">MetaMask</span>

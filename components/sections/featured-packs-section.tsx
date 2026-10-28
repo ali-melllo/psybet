@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LivePacksGrid } from "@/components/sections/live-packs-grid";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { demoPacks } from "@/lib/data/landing-page";
+import { DEMO_PRODUCTS } from "@/lib/data/products";
 
 export function FeaturedPacksSection() {
   return (
@@ -21,8 +21,7 @@ export function FeaturedPacksSection() {
           </Link>
         </Reveal>
         <div className="flex flex-col gap-5">
-          <LivePacksGrid fallback={demoPacks} />
-          <LivePacksGrid fallback={demoPacks} />
+          <LivePacksGrid fallback={DEMO_PRODUCTS.slice(0,10)} />
         </div>
       </div>
     </section>

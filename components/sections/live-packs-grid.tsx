@@ -2,11 +2,11 @@
 
 import { NftPackCard } from "@/components/ui/nft-pack-card";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { Product } from "@/lib/data/products";
 import { isApiConfigured } from "@/lib/env";
 import { useGetPacksQuery } from "@/lib/features/marketplace/marketplace-api";
-import type { NftPack } from "@/types/marketplace";
 
-export function LivePacksGrid({ fallback }: { fallback: NftPack[] }) {
+export function LivePacksGrid({ fallback }: { fallback: Product[] }) {
   const { data, isError } = useGetPacksQuery(undefined, { skip: !isApiConfigured });
   const packs = data && data.length > 0 ? data : fallback;
   return (

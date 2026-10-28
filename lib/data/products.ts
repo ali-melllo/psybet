@@ -83,10 +83,10 @@ export const DEMO_PRODUCTS: Product[] = [
   { id: "p6", name: "Claude Pro – 1 Month", description: "Subscription activation for a month of higher limits.", category: "ai", price: 19.5, image: "/images/packs/gta-vi.jpg", rating: 4.7, reviews: 133, inStock: true, delivery: "1h" },
   { id: "p7", name: "Midjourney Standard – 1 Month", description: "Image generation plan with fast GPU hours.", category: "ai", price: 24, image: "/images/packs/cod.png", rating: 4.3, reviews: 76, inStock: false, delivery: "1h" },
   { id: "p8", name: "Netflix Premium – 6 Months", description: "4K plan on a private profile, 6-month warranty.", category: "streaming", price: 44.9, originalPrice: 71.94, image: "/images/packs/csgo.jpg", rating: 4.4, reviews: 520, inStock: true, delivery: "instant" },
-  { id: "p9", name: "Disney+ Annual", description: "Twelve months of Disney, Pixar, Marvel and Star Wars.", category: "streaming", price: 59, image: "/images/packs/spotify.webp", rating: 4.5, reviews: 98, inStock: true, delivery: "1h" },
-  { id: "p10", name: "Spotify Premium – 12 Months", description: "Ad-free music, offline listening, unlimited skips.", category: "music", price: 54.9, originalPrice: 119.88, image: "/images/packs/spotify.webp", rating: 4.8, reviews: 1204, inStock: true, delivery: "instant", badge: "Best value" },
-  { id: "p11", name: "Apple Music – 3 Months", description: "Lossless audio and spatial sound on all your devices.", category: "music", price: 12.9, image: "/images/packs/spotify.webp", rating: 4.4, reviews: 61, inStock: true, delivery: "instant" },
-  { id: "p12", name: "PlayStation Store Card $25", description: "US-region PSN credit delivered as a code.", category: "gift-cards", price: 24.5, image: "/images/packs/spotify.webp", rating: 4.9, reviews: 689, inStock: true, delivery: "instant" },
+  { id: "p9", name: "Disney+ Annual", description: "Twelve months of Disney, Pixar, Marvel and Star Wars.", category: "streaming", price: 59, image: "/images/packs/spotify.jpg", rating: 4.5, reviews: 98, inStock: true, delivery: "1h" },
+  { id: "p10", name: "Spotify Premium – 12 Months", description: "Ad-free music, offline listening, unlimited skips.", category: "music", price: 54.9, originalPrice: 119.88, image: "/images/packs/figma.webp", rating: 4.8, reviews: 1204, inStock: true, delivery: "instant", badge: "Best value" },
+  { id: "p11", name: "Apple Music – 3 Months", description: "Lossless audio and spatial sound on all your devices.", category: "music", price: 12.9, image: "/images/packs/v-bucks.png", rating: 4.4, reviews: 61, inStock: true, delivery: "instant" },
+  { id: "p12", name: "PlayStation Store Card $25", description: "US-region PSN credit delivered as a code.", category: "gift-cards", price: 24.5, image: "/images/packs/mobile-legends.jpg", rating: 4.9, reviews: 689, inStock: true, delivery: "instant" },
 ];
 
 

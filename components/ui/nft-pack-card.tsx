@@ -1,71 +1,89 @@
-import { BuyPackButton } from "@/components/ui/buy-pack-button";
-import { cn } from "@/lib/utils";
-import type { NftPack } from "@/types/marketplace";
+import { ShoppingCart, Star, Zap } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { CATEGORY_BY_ID, type Product } from "@/lib/data/products";
+import { formatPrice } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
-export function NftPackCard({ pack }: { pack: NftPack }) {
+export function NftPackCard({ pack }: { pack: Product }) {
+  const category = CATEGORY_BY_ID[pack.category];
+  const discount = pack.originalPrice
+    ? Math.round((1 - pack.price / pack.originalPrice) * 100)
+    : 0;
+
   return (
     <article
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-xl bg-background [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] shadow-xl transition-transform duration-200 hover:-translate-y-1"
+        "group relative flex h-full flex-col overflow-hidden rounded-xl bg-background [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] shadow-xl transition-transform duration-200 hover:-translate-y-1",
+        !pack.inStock && "opacity-75",
       )}
     >
-      <div className="relative flex shadow-inner p-2 ">
-
+      <div className="relative flex p-2 shadow-inner">
         <Image
           width={1000}
           height={1000}
-          alt={"adesanya"}
+          alt={pack.name}
           src={pack.image}
-          className="h-52 md:h-64 md:w-full object-cover rounded-t-lg"
+          sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
+          className="h-52 w-full rounded-t-lg object-cover md:h-64"
         />
-        <span
-          className={cn(
-            "absolute right-2 top-2 px-3 rounded-lg rounded-br-none rounded-tl-none pt-1 text-xs font-bold uppercase bg-primary text-white"
-          )}
-        >
-          {pack.badge}
+        <span className="absolute right-2 top-2 rounded-lg rounded-br-none rounded-tl-none bg-primary px-3 pt-1 text-xs font-bold uppercase text-white">
+          {pack.badge ?? category.label}
         </span>
+        {discount > 0 ? (
+          <span className="absolute left-2 top-2 rounded-lg rounded-bl-none rounded-tr-none bg-green px-2 pt-1 text-xs font-bold text-[#080A10]">
+            -{discount}%
+          </span>
+        ) : null}
       </div>
-      <div className="flex flex-1 flex-col justify-between p-2 pb-1">
-        <h3 className="font-display text-lg font-bold">{pack.name}</h3>
-        <p className="text-sm text-muted-foreground">{pack.supply.toLocaleString("en-US")} packs</p>
-        
-        <div className="flex items-center justify-between">
 
-          <div className="md:size-10 hidden md:flex justify-center items-center">
-            <svg
-            className="scale-125 -ml-4"
-              viewBox="0 0 800 600"
-              fill="none"
-            >
-              <defs>
-                <linearGradient
-                  id="solana-gradient"
-                  x1="300.549"
-                  y1="184.631"
-                  x2="547.984"
-                  y2="425.529"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0" stopColor="#CF41E8" />
-                  <stop offset="1" stopColor="#10F2B0" />
-                </linearGradient>
-              </defs>
+      <div className="flex flex-1 flex-col gap-2 p-3 pt-1">
+        <p className="flex items-center gap-1 text-xs text-muted-foreground">
+          <category.Icon className="size-3.5" aria-hidden="true" /> {category.label}
+        </p>
 
+        {/* Stretched link: the whole card opens the product page, the Buy button stays above it. */}
+        <h3 className="font-display font-bold leading-tight md:text-lg">
+          <Link href={`/shop/${pack.id}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-ring focus-visible:after:rounded-xl">
+            {pack.name}
+          </Link>
+        </h3>
+        <p className="line-clamp-2 text-xs text-muted-foreground md:text-sm">{pack.description}</p>
 
-              <path
-                d="M504.3 237.5C503.5 238.4 502.5 239.1 501.4 239.5C500.3 240 499.1 240.2 497.9 240.2H271.4C263.4 240.2 259.3 230.2 264.9 224.2L302.1 184.7C302.9 183.8 303.9 183.1 305.1 182.6C306.2 182.1 307.4 181.9 308.6 181.9H536C544.1 181.9 548.1 192 542.4 198L504.3 237.5Z
-M504.3 414.1C502.6 415.8 500.3 416.8 497.9 416.8H271.4C263.4 416.8 259.3 407 264.9 401.2L302.1 362.6C302.9 361.7 303.9 361 305.1 360.5C306.2 360 307.4 359.8 308.6 359.8H536C544.1 359.8 548.1 369.7 542.4 375.5L504.3 414.1Z
-M504.3 273.6C502.6 271.9 500.3 270.9 497.9 270.9H271.4C263.4 270.9 259.3 280.7 264.9 286.5L302.1 325.1C302.9 326 303.9 326.7 305.1 327.2C306.2 327.7 307.4 327.9 308.6 327.9H536C544.1 327.9 548.1 318 542.4 312.2L504.3 273.6Z"
-                fill="url(#solana-gradient)"
-              />
-            </svg>
-          </div>
+        <div className="flex flex-col gap-1 text-nowrap text-[10px] text-muted-foreground md:flex-row md:items-center md:gap-3 md:text-xs">
+          <span className="flex items-center gap-1">
+            <Star className="size-3.5 fill-green text-green" aria-hidden="true" />
+            <span className="sr-only">Rated </span>
+            {pack.rating.toFixed(1)} ({pack.reviews.toLocaleString("en-US")})
+          </span>
+          <span className="flex items-center gap-1">
+            <Zap className="size-3.5" aria-hidden="true" />
+            {pack.delivery === "instant" ? "Instant delivery" : "Within 1 hour"}
+          </span>
+        </div>
 
+        <div className="mt-auto flex items-center justify-between gap-2 pt-2">
+          <p className="flex flex-col font-semibold md:flex-row">
+            {formatPrice(pack.price)}
+            {pack.originalPrice ? (
+              <span className="text-xs font-normal text-muted-foreground line-through md:ml-2">
+                {formatPrice(pack.originalPrice)}
+              </span>
+            ) : null}
+          </p>
 
-          <p className="text-sm nd:-ml-2 text-nowrap font-semibold">{pack.priceSol} SOL</p>
-          <BuyPackButton pack={pack} />
+          {pack.inStock ? (
+            <Button asChild size="sm" className="relative z-10">
+              <Link href={`/shop/${pack.id}`} aria-label={`Buy ${pack.name}`}>
+                <ShoppingCart aria-hidden="true" /> Buy
+              </Link>
+            </Button>
+          ) : (
+            <Button size="sm" disabled aria-label={`${pack.name} is out of stock`}>
+              Sold out
+            </Button>
+          )}
         </div>
       </div>
     </article>
