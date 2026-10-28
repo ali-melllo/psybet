@@ -7,8 +7,12 @@ import type { WalletState } from "@/lib/wallet/types";
 export interface WalletContextValue extends WalletState {
   isConnected: boolean;
   isCorrectChain: boolean;
+  isMobile: boolean;
+  /** Names of other injected wallets found (e.g. Phantom). They are ignored; MetaMask is always used. */
+  otherWallets: string[];
   targetChain: ChainConfig;
   connect: () => Promise<void>;
+  cancelConnect: () => void;
   disconnect: () => Promise<void>;
   switchToTargetChain: () => Promise<void>;
   openModal: () => void;

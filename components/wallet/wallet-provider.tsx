@@ -1,11 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { WalletContext, type WalletContextValue } from "@/components/wallet/wallet-context";
 import { WalletModal } from "@/components/wallet/wallet-modal";
 import { parseChainId, TARGET_CHAIN } from "@/lib/wallet/chains";
-import { detectMetaMask } from "@/lib/wallet/detect";
-import { isRpcError, isStringArray, type Eip1193Provider, type WalletState } from "@/lib/wallet/types";
+import { detectMobile, findLegacyMetaMask, isMetaMaskRdns, subscribeToProviders } from "@/lib/wallet/detect";
+import { isUnrecognizedChain, noProviderError, toWalletError } from "@/lib/wallet/errors";
+import { isStringArray, type Eip1193Provider, type WalletError, type WalletState } from "@/lib/wallet/types";
 
 const AUTOCONNECT_KEY = "adesnya:wallet:autoconnect";
 
@@ -22,7 +23,7 @@ type Action =
   | { type: "accounts"; address: string }
   | { type: "chain"; chainId: number | null }
   | { type: "disconnected" }
-  | { type: "failed"; error: string }
+  | { type: "failed"; error: WalletError }
   | { type: "modal"; open: boolean };
 
 const initialState: WalletState = { status: "detecting", address: null, chainId: null, error: null, modalOpen: false };
@@ -30,7 +31,8 @@ const initialState: WalletState = { status: "detecting", address: null, chainId:
 function reducer(state: WalletState, action: Action): WalletState {
   switch (action.type) {
     case "detected":
-      return { ...state, status: action.available ? (state.status === "detecting" ? "disconnected" : state.status) : "unavailable" };
+      if (!action.available) return state.status === "detecting" ? { ...state, status: "unavailable" } : state;
+      return state.status === "detecting" || state.status === "unavailable" ? { ...state, status: "disconnected" } : state;
     case "connecting":
       return { ...state, status: "connecting", error: null };
     case "connected":
@@ -42,47 +44,62 @@ function reducer(state: WalletState, action: Action): WalletState {
     case "disconnected":
       return { ...state, status: "disconnected", address: null, chainId: null, error: null };
     case "failed":
-      return { ...state, status: state.address ? "connected" : "disconnected", error: action.error };
+      return { ...state, status: state.address ? "connected" : state.status === "unavailable" ? "unavailable" : "disconnected", error: action.error };
     case "modal":
       return { ...state, modalOpen: action.open, error: action.open ? state.error : null };
   }
 }
 
-function describeError(error: unknown): string {
-  if (isRpcError(error)) {
-    if (error.code === 4001) return "The request was rejected in MetaMask.";
-    if (error.code === -32002) return "A request is already pending. Open MetaMask to continue.";
-  }
-  return "Something went wrong talking to MetaMask. Please try again.";
-}
-
 export function WalletProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [provider, setProvider] = useState<Eip1193Provider | null>(null);
+  const [otherWallets, setOtherWallets] = useState<string[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+  const attempt = useRef(0);
+  const found = useRef(false);
 
-  // 1. Detect MetaMask, then silently restore a previous session (no popup: eth_accounts).
+  // 1. Discover MetaMask by EIP-6963 identity. Other wallets (Phantom…) are recorded but never used.
   useEffect(() => {
+    const mobile = detectMobile();
+    setIsMobile(mobile);
+    const unsubscribe = subscribeToProviders((detail) => {
+      if (isMetaMaskRdns(detail.info.rdns)) {
+        found.current = true;
+        setProvider(detail.provider);
+      } else {
+        setOtherWallets((prev) => (prev.includes(detail.info.name) ? prev : [...prev, detail.info.name]));
+      }
+    });
+    // Give slower environments (mobile in-app browsers) longer before declaring "unavailable".
+    const timer = window.setTimeout(() => {
+      if (found.current) return;
+      const legacy = findLegacyMetaMask();
+      if (legacy) { found.current = true; setProvider(legacy); }
+      else dispatch({ type: "detected", available: false });
+    }, mobile ? 1500 : 800);
+    return () => { unsubscribe(); window.clearTimeout(timer); };
+  }, []);
+
+  // 2. Once MetaMask is known, silently restore a previous session (eth_accounts never opens a popup).
+  useEffect(() => {
+    if (!provider) return;
+    dispatch({ type: "detected", available: true });
+    if (!flag.get()) return;
     let cancelled = false;
     void (async () => {
-      const found = await detectMetaMask();
-      if (cancelled) return;
-      setProvider(found);
-      dispatch({ type: "detected", available: found !== null });
-      if (!found || !flag.get()) return;
       try {
-        const accounts = await found.request<string[]>({ method: "eth_accounts" });
-        const address = accounts[0];
+        const address = (await provider.request<string[]>({ method: "eth_accounts" }))[0];
         if (!address || cancelled) return;
-        const chainId = parseChainId(await found.request<string>({ method: "eth_chainId" }));
+        const chainId = parseChainId(await provider.request<string>({ method: "eth_chainId" }));
         if (!cancelled) dispatch({ type: "connected", address, chainId });
       } catch {
-        /* silent restore failed – user can connect manually */
+        /* silent restore failed – the user can connect manually */
       }
     })();
     return () => { cancelled = true; };
-  }, []);
+  }, [provider]);
 
-  // 2. Keep state in sync with wallet-side changes.
+  // 3. Stay in sync with wallet-side changes.
   useEffect(() => {
     if (!provider) return;
     const onAccounts = (payload: unknown) => {
@@ -94,34 +111,66 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     const onChain = (payload: unknown) => {
       if (typeof payload === "string") dispatch({ type: "chain", chainId: parseChainId(payload) });
     };
+    const onDisconnect = () =>
+      dispatch({ type: "failed", error: { kind: "network", message: "MetaMask lost its connection to the network. Check your internet connection." } });
     provider.on("accountsChanged", onAccounts);
     provider.on("chainChanged", onChain);
+    provider.on("disconnect", onDisconnect);
     return () => {
       provider.removeListener("accountsChanged", onAccounts);
       provider.removeListener("chainChanged", onChain);
+      provider.removeListener("disconnect", onDisconnect);
     };
   }, [provider]);
 
+  // 4. Mobile: events can be missed while the wallet app is in the foreground – re-sync when the tab is visible again.
+  useEffect(() => {
+    if (!provider || state.status !== "connected") return;
+    const onVisible = () => {
+      if (document.visibilityState !== "visible") return;
+      void (async () => {
+        try {
+          const address = (await provider.request<string[]>({ method: "eth_accounts" }))[0];
+          if (!address) { flag.clear(); dispatch({ type: "disconnected" }); return; }
+          dispatch({ type: "accounts", address });
+          dispatch({ type: "chain", chainId: parseChainId(await provider.request<string>({ method: "eth_chainId" })) });
+        } catch {
+          /* transient – keep current state */
+        }
+      })();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, [provider, state.status]);
+
   const connect = useCallback(async () => {
-    if (!provider) { dispatch({ type: "failed", error: "MetaMask was not detected in this browser." }); return; }
+    if (!provider) { dispatch({ type: "failed", error: noProviderError(isMobile) }); return; }
+    const id = ++attempt.current;
     dispatch({ type: "connecting" });
     try {
-      const accounts = await provider.request<string[]>({ method: "eth_requestAccounts" });
-      const address = accounts[0];
+      const address = (await provider.request<string[]>({ method: "eth_requestAccounts" }))[0];
+      if (id !== attempt.current) return; // cancelled by the user
       if (!address) throw new Error("No account returned");
       const chainId = parseChainId(await provider.request<string>({ method: "eth_chainId" }));
+      if (id !== attempt.current) return;
       flag.set();
       dispatch({ type: "connected", address, chainId });
     } catch (error) {
-      dispatch({ type: "failed", error: describeError(error) });
+      if (id === attempt.current) dispatch({ type: "failed", error: toWalletError(error, "connect") });
     }
-  }, [provider]);
+  }, [provider, isMobile]);
+
+  /** Lets the user escape a stuck/hidden wallet popup. */
+  const cancelConnect = useCallback(() => {
+    attempt.current += 1;
+    dispatch({ type: "disconnected" });
+  }, []);
 
   const disconnect = useCallback(async () => {
+    attempt.current += 1;
     flag.clear();
     dispatch({ type: "disconnected" });
     try {
-      // Revokes this site's permission where supported (MetaMask ≥ 11).
       await provider?.request({ method: "wallet_revokePermissions", params: [{ eth_accounts: {} }] });
     } catch {
       /* not supported – local session is already cleared */
@@ -129,31 +178,27 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   }, [provider]);
 
   const switchToTargetChain = useCallback(async () => {
-    if (!provider) return;
+    if (!provider) { dispatch({ type: "failed", error: noProviderError(isMobile) }); return; }
     try {
       await provider.request({ method: "wallet_switchEthereumChain", params: [{ chainId: TARGET_CHAIN.hex }] });
     } catch (error) {
-      if (isRpcError(error) && error.code === 4902) {
-        try {
-          await provider.request({
-            method: "wallet_addEthereumChain",
-            params: [{
-              chainId: TARGET_CHAIN.hex,
-              chainName: TARGET_CHAIN.name,
-              rpcUrls: TARGET_CHAIN.rpcUrls,
-              nativeCurrency: TARGET_CHAIN.nativeCurrency,
-              blockExplorerUrls: [TARGET_CHAIN.explorer],
-            }],
-          });
-          return;
-        } catch (addError) {
-          dispatch({ type: "failed", error: describeError(addError) });
-          return;
-        }
+      if (!isUnrecognizedChain(error)) { dispatch({ type: "failed", error: toWalletError(error, "switch") }); return; }
+      try {
+        await provider.request({
+          method: "wallet_addEthereumChain",
+          params: [{
+            chainId: TARGET_CHAIN.hex,
+            chainName: TARGET_CHAIN.name,
+            rpcUrls: TARGET_CHAIN.rpcUrls,
+            nativeCurrency: TARGET_CHAIN.nativeCurrency,
+            blockExplorerUrls: [TARGET_CHAIN.explorer],
+          }],
+        });
+      } catch (addError) {
+        dispatch({ type: "failed", error: toWalletError(addError, "switch") });
       }
-      dispatch({ type: "failed", error: describeError(error) });
     }
-  }, [provider]);
+  }, [provider, isMobile]);
 
   const openModal = useCallback(() => dispatch({ type: "modal", open: true }), []);
   const closeModal = useCallback(() => dispatch({ type: "modal", open: false }), []);
@@ -163,10 +208,12 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
       ...state,
       isConnected: state.status === "connected",
       isCorrectChain: state.chainId === TARGET_CHAIN.id,
+      isMobile,
+      otherWallets,
       targetChain: TARGET_CHAIN,
-      connect, disconnect, switchToTargetChain, openModal, closeModal,
+      connect, cancelConnect, disconnect, switchToTargetChain, openModal, closeModal,
     }),
-    [state, connect, disconnect, switchToTargetChain, openModal, closeModal],
+    [state, isMobile, otherWallets, connect, cancelConnect, disconnect, switchToTargetChain, openModal, closeModal],
   );
 
   return (

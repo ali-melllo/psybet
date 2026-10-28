@@ -16,7 +16,7 @@ export function HeroSection() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 id="hero-title" className="font-display text-3xl md:text-4xl text-center md:text-left font-extrabold text-white leading-[1.05] sm:text-5xl">
+            <h1 id="hero-title" className="font-display text-3xl md:text-5xl text-center md:text-left font-extrabold text-white leading-[1.05] sm:text-5xl">
               Buy & Sell Verified Accounts and Gift Cards
             </h1>
           </Reveal>
