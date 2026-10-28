@@ -2,6 +2,7 @@
 
 import { CheckCircle2, Circle, Loader2, Minus, Plus, ShieldCheck, Zap } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/components/wallet/wallet-context";
@@ -17,6 +18,7 @@ interface CheckoutPanelProps { product: Product; maxQuantity: number }
 
 export function CheckoutPanel({ product, maxQuantity }: CheckoutPanelProps) {
   const wallet = useWallet();
+  const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [email, setEmail] = useState("");
   const [accepted, setAccepted] = useState(false);
@@ -35,25 +37,29 @@ export function CheckoutPanel({ product, maxQuantity }: CheckoutPanelProps) {
     setAttempted(true);
     if (!emailValid || !accepted || !wallet.address || wallet.chainId === null) return;
     setBusy(true);
-    try {
-      const result = await createOrder({
-        productId: product.id,
-        quantity,
-        email: email.trim(),
-        walletAddress: wallet.address,
-        chainId: wallet.chainId,
-      });
-      setNotice(result.message);
-    } finally {
-      setBusy(false);
+    setNotice(null);
+    const result = await createOrder({
+      productId: product.id,
+      quantity,
+      email: email.trim(),
+      walletAddress: wallet.address,
+      chainId: wallet.chainId,
+    });
+    if (result.status === "created") {
+      router.push(`/orders/${result.orderId}`); // keep `busy` on while navigating
+      return;
     }
+    setNotice(result.message);
+    setBusy(false);
   };
 
   // Single primary action that walks the buyer through the required steps.
   let cta: { label: string; disabled?: boolean; run: () => void };
   if (!product.inStock) cta = { label: "Out of stock", disabled: true, run: () => undefined };
-  else if (wallet.status === "detecting" || wallet.status === "connecting")
-    cta = { label: "Connecting…", disabled: true, run: () => undefined };
+  else if (wallet.status === "detecting")
+    cta = { label: "Checking wallet…", disabled: true, run: () => undefined };
+  else if (wallet.status === "connecting")
+    cta = { label: "Waiting for MetaMask…", disabled: true, run: () => undefined };
   else if (!wallet.isConnected) cta = { label: "Connect wallet to continue", run: wallet.openModal };
   else if (!wallet.isCorrectChain)
     cta = { label: `Switch to ${wallet.targetChain.name}`, run: () => void wallet.switchToTargetChain() };
@@ -143,7 +149,7 @@ export function CheckoutPanel({ product, maxQuantity }: CheckoutPanelProps) {
         </Button>
       </form>
 
-      {wallet.error ? <p role="alert" className="mt-3 text-xs text-primary">{wallet.error.kind}</p> : null}
+      {wallet.error ? <p role="alert" className="mt-3 text-xs text-primary">{wallet.error.message}</p> : null}
       {notice ? <p role="status" className="mt-3 rounded-lg bg-surface-2 p-3 text-sm">{notice}</p> : null}
 
       <ul className="mt-4 space-y-1.5 text-xs text-muted-foreground">

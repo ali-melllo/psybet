@@ -26,7 +26,7 @@ export type WalletStatus = "detecting" | "unavailable" | "disconnected" | "conne
 
 export type WalletErrorKind =
   | "rejected" | "pending" | "locked" | "unauthorized" | "unsupported"
-  | "network" | "no-provider" | "unknown";
+  | "network" | "no-provider" | "insufficient-funds" | "wrong-chain" | "unknown";
 
 export interface WalletError { kind: WalletErrorKind; message: string }
 

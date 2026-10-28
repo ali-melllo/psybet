@@ -62,7 +62,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 height={3000}
                 priority
                 // sizes="(min-width:1024px) 640px, 100vw"
-                className="h-64 w-full rounded-lg object-cover sm:h-100"
+                className="h-64 w-full rounded-lg object-cover sm:h-110"
               />
             </div>
           </Reveal>

@@ -1,3 +1,5 @@
+import { readErrorMessage } from "@/lib/payments/types";
+
 export interface OrderDraft {
   productId: string;
   quantity: number;
@@ -6,14 +8,27 @@ export interface OrderDraft {
   chainId: number;
 }
 
-export interface CreateOrderResult { status: "unavailable"; message: string }
+export type CreateOrderResult =
+  | { status: "created"; orderId: string }
+  | { status: "error"; message: string };
 
 /**
- * Integration point for the payment step.
- * Production: POST the draft to your server, which must (1) re-price the order from its own catalog,
- * (2) verify wallet ownership with a signed message (e.g. SIWE), then (3) return a payment session.
- * Never trust the client-side price or the connected address on its own.
+ * Creates a server-side order. The server re-prices it from its own catalog and validates everything;
+ * nothing the browser sends (price, totals) is trusted. The payment itself happens on /orders/[id].
  */
-export async function createOrder(_draft: OrderDraft): Promise<CreateOrderResult> {
-  return { status: "unavailable", message: "Payment isn’t connected yet. Your order details are ready for the payment step." };
+export async function createOrder(draft: OrderDraft): Promise<CreateOrderResult> {
+  try {
+    const res = await fetch("/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(draft),
+    });
+    const json: unknown = await res.json().catch(() => null);
+    if (!res.ok) return { status: "error", message: readErrorMessage(json) ?? "Couldn’t create your order. Please try again." };
+    const id = (json as { order?: { id?: unknown } } | null)?.order?.id;
+    if (typeof id !== "string") return { status: "error", message: "Unexpected response from the server." };
+    return { status: "created", orderId: id };
+  } catch {
+    return { status: "error", message: "Network error. Check your connection and try again." };
+  }
 }

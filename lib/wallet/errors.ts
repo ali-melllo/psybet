@@ -1,6 +1,6 @@
 import { isRpcError, type WalletError } from "@/lib/wallet/types";
 
-export type WalletAction = "connect" | "switch" | "sync";
+export type WalletAction = "connect" | "switch" | "sync" | "pay";
 
 const hasText = (error: unknown, re: RegExp): boolean =>
   typeof error === "object" && error !== null && "message" in error && re.test(String((error as { message: unknown }).message));
@@ -15,12 +15,18 @@ export function isUnrecognizedChain(error: unknown): boolean {
 
 /** Maps EIP-1193 / JSON-RPC errors to messages a buyer can act on (extension and mobile app). */
 export function toWalletError(error: unknown, action: WalletAction): WalletError {
+  if (hasText(error, /insufficient funds|exceeds (the )?balance|transfer amount exceeds/i)) {
+    return { kind: "insufficient-funds", message: "Your wallet doesn’t have enough funds for this payment plus network fees." };
+  }
   if (isRpcError(error)) {
     switch (error.code) {
       case 4001:
         return {
           kind: "rejected",
-          message: action === "switch" ? "You rejected the network switch in MetaMask." : "You closed or rejected the request in MetaMask. Try again when you’re ready.",
+          message:
+            action === "switch" ? "You rejected the network switch in MetaMask."
+            : action === "pay" ? "You rejected the payment in MetaMask. No funds were moved."
+            : "You closed or rejected the request in MetaMask. Try again when you’re ready.",
         };
       case -32002:
         return { kind: "pending", message: "MetaMask already has a request waiting. Open the MetaMask extension or app, approve or reject it, then try again." };
