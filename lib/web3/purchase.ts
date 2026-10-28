@@ -1,4 +1,4 @@
-import { Product } from "../data/products";
+import type { Product } from "../data/products";
 
 export interface PurchaseResult { status: "unavailable"; message: string }
 

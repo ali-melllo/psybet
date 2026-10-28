@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/lib/hooks";
 import { noticeShown } from "@/lib/features/marketplace/marketplace-slice";
 import { requestPackPurchase } from "@/lib/web3/purchase";
-import type { NftPack } from "@/types/marketplace";
-import { Product } from "@/lib/data/products";
+import type { Product } from "@/lib/data/products";
 
 export function BuyPackButton({ pack }: { pack: Product }) {
   const dispatch = useAppDispatch();

@@ -2,7 +2,7 @@
 
 import { NftPackCard } from "@/components/ui/nft-pack-card";
 import { RevealGroup, RevealItem } from "@/components/ui/reveal";
-import { Product } from "@/lib/data/products";
+import type {Product} from "@/lib/data/products";
 import { isApiConfigured } from "@/lib/env";
 import { useGetPacksQuery } from "@/lib/features/marketplace/marketplace-api";
 

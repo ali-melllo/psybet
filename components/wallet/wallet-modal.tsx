@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle, Check, Copy, ExternalLink, Loader2, LogOut, Smartphone, Wallet } from "lucide-react";
+import { AlertTriangle, Check, Copy, ExternalLink, Loader2, LogOut, Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";

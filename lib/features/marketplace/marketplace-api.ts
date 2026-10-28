@@ -1,6 +1,6 @@
-import { Product } from "@/lib/data/products";
+import type { Product } from "@/lib/data/products";
 import { api } from "@/lib/features/api/api-slice";
-import type { MarketplaceStat, NftPack, RoadmapMilestone } from "@/types/marketplace";
+import type { MarketplaceStat, RoadmapMilestone } from "@/types/marketplace";
 
 export const marketplaceApi = api.injectEndpoints({
   endpoints: (build) => ({
