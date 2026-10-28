@@ -123,7 +123,7 @@ export function CheckoutPanel({ product, maxQuantity }: CheckoutPanelProps) {
 
         <div>
           <label className="flex cursor-pointer items-start gap-2 text-xs text-muted-foreground">
-            <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} aria-invalid={showTermsError} className="mt-0.5 size-4 accent-[var(--primary)]" />
+            <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} aria-invalid={showTermsError} className="mt-0.5 size-4 accent-primary" />
             <span>
               I agree to the <Link href="/terms" className="text-primary underline">Terms</Link> and{" "}
               <Link href="/privacy" className="text-primary underline">Privacy Policy</Link>, and understand this is a digital product.
@@ -143,7 +143,7 @@ export function CheckoutPanel({ product, maxQuantity }: CheckoutPanelProps) {
         </Button>
       </form>
 
-      {wallet.error ? <p role="alert" className="mt-3 text-xs text-primary">{wallet.error}</p> : null}
+      {wallet.error ? <p role="alert" className="mt-3 text-xs text-primary">{wallet.error.kind}</p> : null}
       {notice ? <p role="status" className="mt-3 rounded-lg bg-surface-2 p-3 text-sm">{notice}</p> : null}
 
       <ul className="mt-4 space-y-1.5 text-xs text-muted-foreground">
